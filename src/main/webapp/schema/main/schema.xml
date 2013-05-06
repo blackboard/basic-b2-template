@@ -6,6 +6,7 @@
   <comment>This schema contains tables related to the B2 template.</comment>
 
   <!-- Remember, all custom schema elements must start with your vendor ID. -->
+  <!--
   <table name="monument_test">
     <column name="foo_id" data-type="int" nullable="false" comment="This is the surrogate primary key for the table." />
     <column name="name" data-type="nvarchar(256)" nullable="false" />
@@ -14,5 +15,6 @@
       <columnref name="foo_id" />
     </primary-key>
   </table>
+  -->
   
 </schema>
