@@ -1,0 +1,52 @@
+apply plugin: "java"
+apply plugin: "war"
+apply plugin: "maven"
+
+// define the version for the project when publishing to maven
+group "edu.monument"
+version "1.0-SNAPSHOT"
+
+ext {
+  learnVersion = "9.1.120113.0"
+}
+
+repositories {
+  mavenCentral()
+  maven {
+    url "https://maven.blackboard.com/content/repositories/releases/"
+  }
+}
+
+configurations {
+  buildUtils
+}
+
+// define the project's dependencies
+dependencies {
+  // providedCompile dependencies are libraries needed to build, but should not be included in the B2 WAR.
+  // You should NEVER include Learn JARs (other than webapis) in your B2.
+  providedCompile( "blackboard.platform:bb-platform:$ext.learnVersion" ) { transitive = false }
+  providedCompile( "blackboard.platform:bb-cms-admin:$ext.learnVersion" ) { transitive = false }
+  providedCompile( "blackboard.platform:bb-taglibs:$ext.learnVersion" ) { transitive = false }
+
+  providedCompile "javax.servlet:servlet-api:2.5",
+                  "javax.servlet.jsp:jsp-api:2.1"
+
+  // Building a Spring B2?  Use our Spring APIs!
+  // compile( "blackboard.platform:bb-spring-webapi:$ext.learnVersion" ) { transitive = false }
+
+  runtime "org.javassist:javassist:3.17.1-GA",
+          "dom4j:dom4j:1.6.1"
+
+  buildUtils "org.oscelot:b2deploy-task:0.1.0"
+}
+
+// Add a task to deploy a B2 using starting block
+task deployB2( dependsOn: "war" ) << {
+      ant.taskdef( name: "b2deploy", classname: "org.oscelot.ant.B2DeployTask", classpath: project.configurations.buildUtils.asPath )
+      ant.b2deploy( localfilepath: project.war.archivePath, host: System.getProperty("server"), courseorgavailable: 'true', clean: 'true' )
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '1.5'
+}
