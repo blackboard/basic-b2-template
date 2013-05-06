@@ -1,6 +1,7 @@
 apply plugin: "java"
 apply plugin: "war"
 apply plugin: "maven"
+apply plugin: "eclipse"
 
 // define the version for the project when publishing to maven
 group "edu.monument"
