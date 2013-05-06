@@ -17,6 +17,17 @@ repositories {
   }
 }
 
+sourceSets {
+  api {
+    java {
+      srcDir "src/api/java"
+    }
+    resources {
+      srcDir "src/api/resources"
+    }
+  }
+}
+
 configurations {
   buildUtils
 }
@@ -26,11 +37,12 @@ dependencies {
   // providedCompile dependencies are libraries needed to build, but should not be included in the B2 WAR.
   // You should NEVER include Learn JARs (other than webapis) in your B2.
   providedCompile( "blackboard.platform:bb-platform:$ext.learnVersion" ) { transitive = false }
-  providedCompile( "blackboard.platform:bb-cms-admin:$ext.learnVersion" ) { transitive = false }
   providedCompile( "blackboard.platform:bb-taglibs:$ext.learnVersion" ) { transitive = false }
 
   providedCompile "javax.servlet:servlet-api:2.5",
                   "javax.servlet.jsp:jsp-api:2.1"
+
+  apiCompile( "blackboard.platform:bb-cms-admin:$ext.learnVersion" ) { transitive = false }
 
   // Building a Spring B2?  Use our Spring APIs!
   // compile( "blackboard.platform:bb-spring-webapi:$ext.learnVersion" ) { transitive = false }
@@ -39,6 +51,17 @@ dependencies {
           "dom4j:dom4j:1.6.1"
 
   buildUtils "org.oscelot:b2deploy-task:0.1.0"
+}
+
+task apiJar( type: Jar, dependsOn: tasks.apiClasses ) {
+  from sourceSets.api.output
+  baseName = "$project.name-api"
+}
+
+war {
+  from( apiJar ) {
+    into "WEB-INF/libext"
+  }
 }
 
 // Add a task to deploy a B2 using starting block
