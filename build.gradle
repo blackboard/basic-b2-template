@@ -47,7 +47,7 @@ dependencies {
   // apiCompile( "blackboard.platform:bb-cms-admin:$ext.learnVersion" ) { transitive = false }
 
   // Building a Spring B2?  Use our Spring APIs!
-  // compile( "blackboard.platform:bb-spring-webapi:$ext.learnVersion" ) { transitive = false }
+  // compile "blackboard.platform:bb-spring-webapi:10.1"
 
   // Dependencies that are only necessary at runtime so should be included in the WAR
   // runtime "org.javassist:javassist:3.17.1-GA"
