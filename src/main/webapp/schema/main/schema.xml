@@ -7,11 +7,11 @@
 
   <!-- Remember, all custom schema elements must start with your vendor ID. -->
   <!--
-  <table name="monument_test">
+  <table name="mnmt_test">
     <column name="foo_id" data-type="int" nullable="false" comment="This is the surrogate primary key for the table." />
     <column name="name" data-type="nvarchar(256)" nullable="false" />
     <column name="value" data-type="nvarchar(256)" nullable="false" />
-    <primary-key name="monument_test_pk" comment="This is the name of primary key constraint on column foo_id.">
+    <primary-key name="mnmt_test_pk" comment="This is the name of primary key constraint on column foo_id.">
       <columnref name="foo_id" />
     </primary-key>
   </table>

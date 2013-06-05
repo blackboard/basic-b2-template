@@ -43,11 +43,11 @@ dependencies {
   // providedCompile( "blackboard.platform:bb-platform:$ext.learnVersion" ) { transitive = false }
   // providedCompile( "blackboard.platform:bb-taglibs:$ext.learnVersion" ) { transitive = false }
 
-  // Dependencies that are just usd for the API jar compilation
-  // apiCompile( "blackboard.platform:bb-cms-admin:$ext.learnVersion" ) { transitive = false }
-
   // Building a Spring B2?  Use our Spring APIs!
   // compile "blackboard.platform:bb-spring-webapi:10.1"
+
+  // Include the Blackboard security web APIs for protecting your B2.
+  // compile "blackboard.platform:security-webapi:1.0"
 
   // Dependencies that are only necessary at runtime so should be included in the WAR
   // runtime "org.javassist:javassist:3.17.1-GA"
@@ -57,7 +57,7 @@ dependencies {
 
 task apiJar( type: Jar, dependsOn: tasks.apiClasses ) {
   from sourceSets.api.output
-  baseName = "$project.name-api"
+  classifier = "api"
 }
 
 /* Uncomment if you are including an API jar in your B2.
@@ -65,6 +65,10 @@ war {
   from( apiJar ) {
     into "WEB-INF/libext"
   }
+}
+
+artifacts {
+  archives apiJar
 }
 */
 
@@ -75,5 +79,5 @@ task deployB2( dependsOn: "war" ) << {
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '1.5'
+  gradleVersion = '1.6'
 }
