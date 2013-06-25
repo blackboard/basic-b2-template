@@ -3,6 +3,9 @@ apply plugin: "war"
 apply plugin: "maven"
 apply plugin: "eclipse"
 
+// Uncomment if your project has an API JAR
+//apply from: "api.gradle"
+
 // define the version for the project when publishing to maven
 group "edu.monument"
 version "1.0-SNAPSHOT"
@@ -15,17 +18,6 @@ repositories {
   mavenCentral()
   maven {
     url "https://maven.blackboard.com/content/repositories/releases/"
-  }
-}
-
-sourceSets {
-  api {
-    java {
-      srcDir "src/api/java"
-    }
-    resources {
-      srcDir "src/api/resources"
-    }
   }
 }
 
@@ -54,23 +46,6 @@ dependencies {
 
   buildUtils "org.oscelot:b2deploy-task:0.1.0"
 }
-
-task apiJar( type: Jar, dependsOn: tasks.apiClasses ) {
-  from sourceSets.api.output
-  classifier = "api"
-}
-
-/* Uncomment if you are including an API jar in your B2.
-war {
-  from( apiJar ) {
-    into "WEB-INF/libext"
-  }
-}
-
-artifacts {
-  archives apiJar
-}
-*/
 
 // Add a task to deploy a B2 using starting block
 task deployB2( dependsOn: "war" ) << {
