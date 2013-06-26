@@ -1,4 +1,9 @@
 
+configurations {
+  // This configuration is used for referencing the API classes from the regular compile
+  apiClasses
+}
+
 // Define a "source set" referencing the API source code for the B2.
 sourceSets {
   api {
@@ -11,6 +16,9 @@ sourceSets {
   }
 }
 
+configurations.providedCompile.extendsFrom configurations.apiCompile
+configurations.providedRuntime.extendsFrom configurations.apiRuntime
+
 // Build and package the API source code
 task apiJar( type: Jar, dependsOn: tasks.apiClasses ) {
   from sourceSets.api.output
@@ -22,9 +30,26 @@ war {
   from( apiJar ) {
     into "WEB-INF/libext"
   }
+
+  classpath = sourceSets.main.runtimeClasspath.minus( configurations.providedRuntime ).minus( configurations.apiClasses )
 }
 
 // Make sure that the API JAR is also uploaded to Maven if you deploy there.
 artifacts {
   archives apiJar
+}
+
+// Make sure that the compile job happens after the API job
+project.compileJava.dependsOn project.apiClasses
+
+// Add the API classes to the main compile classpath
+dependencies {
+  apiClasses files( sourceSets.api.output.classesDir )
+  compile configurations.apiClasses
+}
+
+eclipse {
+  classpath {
+    minusConfigurations += configurations.apiClasses
+  }
 }
