@@ -31,6 +31,7 @@
     </http-actions>
      -->    
 
+    <!-- 
     <application-defs>
       <application handle="test" type="shared" use-ssl="false" 
                    name="TODO Name for your application" can-allow-guest="false">
@@ -45,14 +46,19 @@
         </links>
       </application>
     </application-defs>
+    -->
 
     <!-- Portal Module Definitions -->
+    <!--
     <module-defs>
     </module-defs>
+    -->
 
     <!-- Custom Content Types -->
+    <!--
     <content-handlers>
     </content-handlers>
+    -->
 
     <!-- Add custom schema elements to Learn.
          http://help.blackboard.com/b2/schema.html
