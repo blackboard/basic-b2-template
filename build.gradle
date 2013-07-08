@@ -40,8 +40,8 @@ dependencies {
   // Building a Spring B2?  Use our Spring APIs!
   // compile "blackboard.platform:bb-spring-webapi:10.1"
 
-  // Include the Blackboard security web APIs for protecting your B2.
-  // compile "blackboard.platform:security-webapi:1.0"
+  // Include the Blackboard security APIs for protecting your B2.
+  // providedCompile "blackboard.plugin:security:1.0:api"
 
   // Dependencies that are only necessary at runtime so should be included in the WAR
   // runtime "org.javassist:javassist:3.17.1-GA"
