@@ -34,7 +34,7 @@
     <!-- 
     <application-defs>
       <application handle="test" type="shared" use-ssl="false" 
-                   name="TODO Name for your application" can-allow-guest="false">
+                   name="example-app" can-allow-guest="false">
         <description lang="en_US">TODO Description of your application</description>
         <links>
           <link>
@@ -51,13 +51,60 @@
     <!-- Portal Module Definitions -->
     <!--
     <module-defs>
+      <module-type ext-ref="mnmt-module" title="mnmt-module.title" uicreatable="false">
+        <jsp-dir>module</jsp-dir>
+        <jsp>
+          <view>view.jsp</view>
+        </jsp>
+      </module-type>
+      <module type="mnmt-module" isadmin="true" useraddable="true" isdeletable="true" isdetachable="true" title="Monument U.">
+        <description></description>
+        <ExtraInfo>
+          <property key="someKey" type="String"></property>
+        </ExtraInfo>
+        <module-groups>
+          <module-group id="Everyone" />
+        </module-groups>
+      </module>
     </module-defs>
     -->
 
     <!-- Custom Content Types -->
     <!--
     <content-handlers>
+      <content-handler>
+        <name value="content_handler.name" />
+        <handle value="resource/x-mnmt-content" />
+        <http-actions>
+          <create value="" />
+          <modify value="" />
+          <view value="" />
+          <cpview value="" />
+        </http-actions>
+        <application value="example-app"/>
+        <icons>
+          <listitem value="images/50x50.gif" />
+        </icons>
+        <types>
+          <type>
+            <action-type value="collaborate" />
+          </type>
+        </types>
+      </content-handler>
     </content-handlers>
+    -->
+
+    <!-- Add custom score providers for gradeable items.
+    <score-providers>
+      <score-provider>
+        <name value="example-score-provider" />
+        <handle value="resource/x-mnmt-score" />
+        <review-action value="" />
+        <grade-action value="" />
+        <allow-multiple value="false" />
+        <attempt-based value="false" />
+      </score-provider>
+    </score-providers>
     -->
 
     <!-- Add custom schema elements to Learn.
@@ -65,6 +112,16 @@
     <schema-dirs>
       <schema-dir dir-name="main" />
     </schema-dirs>
+    -->
+
+    <!-- Create custom entitlements that are automatically applied to any
+         role that already has the "template" entitlement.
+    <entitlements>
+      <entitlement uid="course.mnmt-app.EXECUTE"
+                   label="course.mnmt-app.EXECUTE.label"
+                   type="Course"
+                   template="course.blog.grade.EXECUTE" />
+    </entitlements>
     -->
 
     <!-- Code permissions required for proper operation -->
