@@ -76,10 +76,10 @@
         <name value="content_handler.name" />
         <handle value="resource/x-mnmt-content" />
         <http-actions>
-          <create value="" />
-          <modify value="" />
-          <view value="" />
-          <cpview value="" />
+          <create value="content/create.jsp" />
+          <modify value="content/edit.jsp" />
+          <view value="content/view.jsp" />
+          <cpview value="content/cpview.jsp" />
         </http-actions>
         <application value="example-app"/>
         <icons>
