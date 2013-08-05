@@ -34,7 +34,7 @@
     <!-- 
     <application-defs>
       <application handle="test" type="shared" use-ssl="false" 
-                   name="example-app" can-allow-guest="false">
+                   name="Example App" can-allow-guest="false">
         <description lang="en_US">TODO Description of your application</description>
         <links>
           <link>
@@ -81,7 +81,7 @@
           <view value="content/view.jsp" />
           <cpview value="content/cpview.jsp" />
         </http-actions>
-        <application value="example-app"/>
+        <application value="mnmt-test"/>
         <icons>
           <listitem value="images/50x50.gif" />
         </icons>
