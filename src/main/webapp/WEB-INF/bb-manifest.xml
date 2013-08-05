@@ -38,7 +38,7 @@
         <description lang="en_US">TODO Description of your application</description>
         <links>
           <link>
-            <type value="course_tool"/>
+            <type value="tool"/>
             <name value="Example Course tool"/>
             <url value="index.jsp" />
             <description value="An Example course Tool" />
