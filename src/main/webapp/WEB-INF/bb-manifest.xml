@@ -33,15 +33,15 @@
 
     <!-- 
     <application-defs>
-      <application handle="test" type="shared" use-ssl="false" 
-                   name="Example App" can-allow-guest="false">
-        <description lang="en_US">TODO Description of your application</description>
+      <application handle="app1" type="shared" use-ssl="false" 
+                   name="app1.name" can-allow-guest="false">
+        <description lang="en_US"></description>
         <links>
           <link>
             <type value="tool"/>
-            <name value="Example Course tool"/>
+            <name value="tool1.name"/>
             <url value="index.jsp" />
-            <description value="An Example course Tool" />
+            <description value="tool1.description" />
           </link>
         </links>
       </application>
@@ -81,7 +81,7 @@
           <view value="content/view.jsp" />
           <cpview value="content/cpview.jsp" />
         </http-actions>
-        <application value="mnmt-test"/>
+        <application value="mnmt-app1"/>
         <icons>
           <listitem value="images/50x50.gif" />
         </icons>
