@@ -40,7 +40,7 @@
           <link>
             <type value="tool"/>
             <name value="tool1.name"/>
-            <url value="index.jsp" />
+            <url value="tool/index.jsp" />
             <description value="tool1.description" />
           </link>
         </links>
