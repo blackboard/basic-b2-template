@@ -16,3 +16,7 @@ Next, add an origin remote for your own git repository:
 
 Add your code and push to your origin remote: 
 `git push origin`
+
+Deploying Your B2
+===
+To deploy your B2 for testing, run `gradlew deployB2`.
