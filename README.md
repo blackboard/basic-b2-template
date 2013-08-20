@@ -7,7 +7,7 @@ How To Use This Project
 ====
 
 Clone this repository into a directory: 
-`git clone git@github.com:blackboard/basic-b2-template.git -o template <project name>`
+`git clone https://github.com/blackboard/basic-b2-template.git -o template <project name>`
 
 Note that the clone command has assigned the `template` remote identifier to keep it separated from your real origin remote.
 
