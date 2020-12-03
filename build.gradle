@@ -19,7 +19,7 @@ ext {
 
 repositories {
   maven {
-    url "https://bbprepo-us-east-1.saas.bbpd.io/repository/releases"
+    url "https://bbprepo-us-east-1.saas.bbpd.io/content/repositories/releases/"
   }
   mavenCentral()
 }
