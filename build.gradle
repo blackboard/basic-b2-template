@@ -12,16 +12,16 @@ group "edu.monument"
 version "1.0-SNAPSHOT"
 
 ext {
-  learnVersion = "9.1.120113.0"
-  deployServer = "localhost:8000"
+  learnVersion = "3900.6.0"
+  deployServer = "http://localhost:8080"
   deployInstance = "BBLEARN"
 }
 
 repositories {
-  mavenCentral()
   maven {
     url "https://maven.blackboard.com/content/repositories/releases/"
   }
+  mavenCentral()
 }
 
 configurations {
@@ -30,16 +30,16 @@ configurations {
 
 // define the project's dependencies
 dependencies {
-  providedCompile "javax.servlet:servlet-api:2.5",
-                  "javax.servlet.jsp:jsp-api:2.1"
+  providedCompile "javax.servlet:javax.servlet-api:3.1.0",
+                  "javax.servlet.jsp:javax.servlet.jsp-api:2.3.3"
 
   // Dependencies are libraries needed to build, but should not be included in the B2 WAR.
   // You should NEVER include Learn JARs (other than webapis) in your B2.
-  // providedCompile( "blackboard.platform:bb-platform:$ext.learnVersion" ) { transitive = false }
-  // providedCompile( "blackboard.platform:bb-taglibs:$ext.learnVersion" ) { transitive = false }
+  providedCompile( "blackboard.platform:bb-platform:$project.ext.learnVersion" ) { transitive = false }
+  providedCompile( "blackboard.platform:bb-taglibs:$project.ext.learnVersion" ) { transitive = false }
 
   // Building a Spring B2?  Use our Spring APIs!
-  // compile "blackboard.platform:bb-spring-webapi:10.1"
+  compile "blackboard.platform:bb-spring-webapi:10.1"
 
   // Include the Blackboard security APIs for protecting your B2.
   // providedCompile "blackboard.plugin:security:1.0:api"
@@ -51,11 +51,18 @@ dependencies {
 }
 
 // Add a task to deploy a B2 using starting block
-task deployB2( dependsOn: "war" ) << {
-      ant.taskdef( name: "b2deploy", classname: "org.oscelot.ant.B2DeployTask", classpath: project.configurations.buildUtils.asPath )
-      ant.b2deploy( localfilepath: project.war.archivePath, host: project.ext.deployServer, courseorgavailable: 'true', clean: 'true', webappName: 'bb-starting-block-' + project.ext.deployInstance )
-}
-
-task wrapper(type: Wrapper) {
-  gradleVersion = '1.6'
+task deployB2() {
+  dependsOn 'war'
+  doLast {
+    ant.taskdef( name: "b2deploy",
+                 classname: "org.oscelot.ant.B2DeployTask",
+                 classpath: project.configurations.buildUtils.asPath
+    )
+    ant.b2deploy( localfilepath: project.war.archivePath,
+                  host: project.ext.deployServer,
+                  courseorgavailable: 'true',
+                  clean: 'true',
+                  webappName: 'bb-starting-block-' + project.ext.deployInstance
+    )
+  }
 }
