@@ -12,14 +12,14 @@ group "edu.monument"
 version "1.0-SNAPSHOT"
 
 ext {
-  learnVersion = "3900.0.0"
+  learnVersion = "3900.6.0"
   deployServer = "http://localhost:8080"
   deployInstance = "BBLEARN"
 }
 
 repositories {
   maven {
-    url "https://bbprepo-us-east-1.saas.bbpd.io/content/repositories/releases/"
+    url "https://maven.blackboard.com/content/repositories/releases/"
   }
   mavenCentral()
 }
